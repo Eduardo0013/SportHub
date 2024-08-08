@@ -1,0 +1,21 @@
+.ListView {
+    @apply flex flex-col
+}
+.ListView-header {
+    @apply px-4 py-5 text-xl font-medium border-b flex justify-between items-center
+}
+.ListView-row {
+    @apply px-4 py-5 flex justify-between items-center border-b
+}
+.ListView-row:hover {
+    @apply cursor-pointer bg-white;
+}
+.ListView-row_title {
+    @apply text-gray-800 font-medium
+}
+.ListView-row_subtitle {
+    @apply text-gray-500 text-xs font-medium
+}
+.ListView-row_container {
+    @apply flex flex-col justify-between
+}

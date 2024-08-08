@@ -1,0 +1,9 @@
+.Form {
+    @apply flex flex-col p-4
+}
+.Form-group {
+    @apply flex flex-col gap-2
+}
+.Form-control {
+    @apply border border-gray-300  shadow-sm rounded-md p-2 font-normal
+}

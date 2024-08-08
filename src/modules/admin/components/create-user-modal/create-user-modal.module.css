@@ -1,0 +1,23 @@
+.CreateUserModal {
+    @apply flex fixed top-0 left-0 right-0 bottom-0 justify-center items-center gap-1 bg-black bg-opacity-20
+}
+.CreateUserModal-form {
+    @apply border rounded-md w-3/12 bg-white gap-3 p-0;
+    animation: fade 0.5s;
+}
+.CreateUserModal-form_header {
+    @apply px-4 py-3 border-b text-xl font-semibold items-center flex gap-3
+}
+.CreateUserModal-form_body {
+    @apply p-4
+}
+.CreateUserModal-form_footer {
+    @apply flex gap-2 justify-end p-4 bg-gray-50
+}
+
+@keyframes fade {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+}

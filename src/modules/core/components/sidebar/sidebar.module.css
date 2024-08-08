@@ -1,0 +1,15 @@
+.Sidebar {
+    @apply bg-slate-900 text-white font-medium p-4 gap-1;
+}
+.Sidebar-header {
+    @apply p-4 text-xl
+}
+.Sidebar-button {
+    @apply p-4 rounded-md flex items-center gap-3;
+}
+.Sidebar-button:hover {
+    @apply bg-slate-800 cursor-pointer
+}
+.Sidebar-button.is-active {
+    @apply bg-slate-800
+}

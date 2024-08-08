@@ -1,0 +1,11 @@
+.Dashboard {
+    display: grid;
+    grid-template-columns: 16% 1fr;
+    height: 100vh;
+    max-height: 100vh;
+    overflow-y: hidden;
+}
+.Dashboard-display {
+    max-height: 100vh;
+    overflow-y: scroll;
+}
