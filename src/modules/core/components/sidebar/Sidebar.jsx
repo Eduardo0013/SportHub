@@ -9,8 +9,8 @@ const Sidebar = ({ children, ...props }) => {
     )
 }
 
-const Header = ({children}) => {
-    return ( 
+const Header = ({ children }) => {
+    return (
         <div className={stylesheet['Sidebar-header']}>
             {children}
         </div>
@@ -20,16 +20,24 @@ const Header = ({children}) => {
 const Button = ({ children, ...props }) => {
     return (
         <NavLink className={
-            ({ isActive, isPending }) => isActive 
-            ? `${stylesheet['Sidebar-button']} ${stylesheet['Sidebar-button.is-active']}` 
-            : stylesheet['Sidebar-button']} {...props}>
+            ({ isActive, isPending }) => isActive
+                ? `${stylesheet['Sidebar-button']} ${stylesheet['Sidebar-button.is-active']}`
+                : stylesheet['Sidebar-button']} {...props}>
             {children}
         </NavLink>
     )
 }
 
+const Footer = ({ children, ...props }) => {
+    return (
+        <div  {...props}>
+            {children}
+        </div>
+    )
+}
 
 Sidebar.Button = Button
 Sidebar.Header = Header
+Sidebar.Footer = Footer
 
 export default Sidebar

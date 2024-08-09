@@ -10,6 +10,6 @@
 .Sidebar-button:hover {
     @apply bg-slate-800 cursor-pointer
 }
-.Sidebar-button.is-active {
+.Sidebar-button\.is-active {
     @apply bg-slate-800
 }

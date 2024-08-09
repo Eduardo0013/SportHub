@@ -1,48 +1,35 @@
 import Button from "../../../core/components/button/Button"
 import Form from "../../../core/components/form/Form"
-import stylesheet from './create-user-modal.module.css'
+import stylesheet from './create-sport-modal.module.css'
+import SecondaryButton from "../../../core/components/button/SecondaryButton"
 
-const CreateSportModal = ({ user, handleClose }) => {
+const CreateSportModal = ({ sport, handleClose }) => {
 
     return (
-        <div className={stylesheet.CreateUserModal}>
+        <div className={stylesheet.CreateSportModal}>
             <Form
-                className={stylesheet['CreateUserModal-form']}
+                className={stylesheet['CreateSportModal-form']}
                 onSubmit={(ev) => { ev.preventDefault() }}>
-                <div className={stylesheet['CreateUserModal-form_header']}>
+                <div className={stylesheet['CreateSportModal-form_header']}>
                     Editar
                 </div>
-                <div className={stylesheet['CreateUserModal-form_body']}>
+                <div className={stylesheet['CreateSportModal-form_body']}>
                     <Form.Group>
-                        <Form.Label htmlFor='user-name'>Nombre</Form.Label>
-                        <Form.Control id="user-name" value={user?.nombre} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label htmlFor='user-apellido-paterno'>Apellido Paterno</Form.Label>
-                        <Form.Control id="user-apellido-paterno" value={user?.apellidoPat} required />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label htmlFor='user-apellido-materno'>Apellido Materno</Form.Label>
-                        <Form.Control id="user-apellido-materno" value={user?.apellidoMat} required />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label htmlFor='user-pemail'>Email</Form.Label>
-                        <Form.Control id="user-email" value={user?.email} required />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label htmlFor='user-password'>Contraseña</Form.Label>
-                        <Form.Control id="user-password" type="password" value={user?.password} required />
+                        <Form.Label htmlFor='sport-name'>Nombre</Form.Label>
+                        <Form.Control id="sport-name" value={sport?.nombre} />
                     </Form.Group>
                 </div>
-                <div className={stylesheet['CreateUserModal-form_footer']}>
+                <div className={stylesheet['CreateSportModal-form_footer']}>
                     <Button type="submit">
                         Guardar
                     </Button>
-                    <Button
-                        className='bg-transparent text-gray-700 border border-gray-300 shadow-sm hover:bg-gray-50'
+                    <Button className='bg-red-600 hover:bg-red-500'>
+                            Eliminar
+                        </Button>
+                    <SecondaryButton
                         onClick={handleClose}>
                         Cerrar
-                    </Button>
+                    </SecondaryButton>
                 </div>
             </Form>
         </div>

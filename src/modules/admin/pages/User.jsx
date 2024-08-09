@@ -6,8 +6,8 @@ import useModal from '../../core/hooks/useModal'
 import { useState } from 'react'
 
 const User = () => {
-    const { isActive,handleOpen,handleClose } = useModal()
-    const [user,setUser] = useState(null)
+    const { isActive, handleOpen, handleClose } = useModal()
+    const [user, setUser] = useState(null)
 
     const handleClickButtonLink = () => {
         setUser({
@@ -26,18 +26,20 @@ const User = () => {
             <ListView>
                 <ListView.Header>
                     Usuarios
-                    <Button 
-                    onClick={handleOpen}
-                    className='text-sm'>Crear</Button>
+                    <Button
+                        onClick={handleOpen}
+                        className='text-sm'>Crear</Button>
                 </ListView.Header>
                 <ListView.Row>
                     <ListView.Details
                         title='Eduardo Cazabal Salas / eduardocazabalsalas@gmail.com'
                         subtitle='administrador' />
-                    <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
+                    <ListView.ItemsGroup>
+                        <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
+                    </ListView.ItemsGroup>
                 </ListView.Row>
             </ListView>
-            {isActive && <CreateUser user={user} handleClose={handleClose}/>}
+            {isActive && <CreateUser user={user} handleClose={handleClose} />}
         </div>
     )
 }

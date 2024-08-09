@@ -1,6 +1,8 @@
 import Button from "../../../core/components/button/Button"
 import Form from "../../../core/components/form/Form"
 import stylesheet from './create-user-modal.module.css'
+import SecondaryButton from "../../../core/components/button/SecondaryButton"
+import { v4 } from 'uuid'
 
 const CreateUserModal = ({ user, handleClose }) => {
 
@@ -38,11 +40,13 @@ const CreateUserModal = ({ user, handleClose }) => {
                     <Button type="submit">
                         Guardar
                     </Button>
-                    <Button
-                        className='bg-transparent text-gray-700 border border-gray-300 shadow-sm hover:bg-gray-50'
+                    <Button className='bg-red-600 hover:bg-red-500'>
+                        Eliminar
+                    </Button>
+                    <SecondaryButton
                         onClick={handleClose}>
                         Cerrar
-                    </Button>
+                    </SecondaryButton>
                 </div>
             </Form>
         </div>

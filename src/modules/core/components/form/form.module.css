@@ -7,3 +7,18 @@
 .Form-control {
     @apply border border-gray-300  shadow-sm rounded-md p-2 font-normal
 }
+.Form-control:focus{
+    @apply focus:outline-indigo-500
+}
+.Form-combobox {
+    @apply flex flex-col relative
+}
+.Form-combobox_floating-menu {
+    @apply border rounded bg-white absolute fixed top-12 shadow-md block py-1 overflow-y-scroll w-full max-h-48 z-10
+}
+.Form-combobox_item{
+    @apply p-2
+}
+.Form-combobox_item:hover {
+    @apply bg-indigo-600 text-white cursor-pointer
+}

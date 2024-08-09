@@ -27,13 +27,13 @@ const Dashboard = () => {
                     </span>
                     Deportes
                 </Sidebar.Button>
-                <Sidebar.Button>
+                <Sidebar.Button to='/torneos'>
                     <span className="material-symbols-outlined">
                         emoji_events
                     </span>
                     Torneos
                 </Sidebar.Button>
-                <Sidebar.Button>
+                <Sidebar.Button to='/game'>
                     <span className="material-symbols-outlined">
                         stadia_controller
                     </span>

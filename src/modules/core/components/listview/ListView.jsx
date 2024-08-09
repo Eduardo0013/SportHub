@@ -37,8 +37,17 @@ const Details = ({ title, subtitle, ...props }) => {
     )
 }
 
+const ItemsGroup = ({children, ...props}) => {
+    return (
+        <div className={stylesheet['ListView-row_actionButtons']} {...props}>
+            {children}
+        </div>
+    )
+}
+
 ListView.Row = Row
 ListView.Details = Details
 ListView.Header = Header
+ListView.ItemsGroup = ItemsGroup
 
 export default ListView
