@@ -3,13 +3,14 @@
 }
 .CreateUserModal-form {
     @apply border rounded-md w-3/12 bg-white gap-3 p-0;
+    max-height: 70vh;
     animation: fade 0.5s;
 }
 .CreateUserModal-form_header {
     @apply px-4 py-3 border-b text-xl font-semibold items-center flex gap-3
 }
 .CreateUserModal-form_body {
-    @apply p-4
+    @apply p-4 overflow-y-scroll;
 }
 .CreateUserModal-form_footer {
     @apply flex gap-2 justify-end p-4 bg-gray-50

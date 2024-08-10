@@ -1,11 +1,10 @@
-import Button from "../../../core/components/button/Button"
-import Form from "../../../core/components/form/Form"
+import Button from "@Modules/core/components/button/Button"
+import Form from "@Modules/core/components/form/Form"
 import stylesheet from './create-user-modal.module.css'
-import SecondaryButton from "../../../core/components/button/SecondaryButton"
-import { v4 } from 'uuid'
+import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
 
-const CreateUserModal = ({ user, handleClose }) => {
-
+const CreateUserModal = ({ user, handleClose, endpoint }) => {
+    
     return (
         <div className={stylesheet.CreateUserModal}>
             <Form
@@ -21,11 +20,11 @@ const CreateUserModal = ({ user, handleClose }) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-apellido-paterno'>Apellido Paterno</Form.Label>
-                        <Form.Control id="user-apellido-paterno" value={user?.apellidoPat} required />
+                        <Form.Control id="user-apellido-paterno" value={user?.apellido_pat} required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-apellido-materno'>Apellido Materno</Form.Label>
-                        <Form.Control id="user-apellido-materno" value={user?.apellidoMat} required />
+                        <Form.Control id="user-apellido-materno" value={user?.apellido_mat} required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-pemail'>Email</Form.Label>
@@ -33,7 +32,12 @@ const CreateUserModal = ({ user, handleClose }) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-password'>Contraseña</Form.Label>
-                        <Form.Control id="user-password" type="password" value={user?.password} required />
+                        <Form.Control
+                            id="user-password"
+                            type="password"
+                            value={user?.password}
+                            placeholder='Nueva contraseña'
+                            required />
                     </Form.Group>
                 </div>
                 <div className={stylesheet['CreateUserModal-form_footer']}>
