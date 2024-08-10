@@ -4,6 +4,7 @@ import stylesheet from './create-tournament-modal.module.css'
 import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
 import ComboBox from '@Modules/core/components/form/ComboBox'
 import SportComboBoxDetails from '../sport-combox-details/SportComboBoxDetails'
+import Slider from '@Modules/core/components/form/Slider'
 
 
 const CreateTournamentModal = ({ tournament, handleClose }) => {
@@ -48,7 +49,7 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
                     <div className={stylesheet['CreateTournamentModal-form_row']}>
                         <Form.Group>
                             <Form.Label htmlFor='tournament-private'>Torneo Privado</Form.Label>
-                            <Form.Control id="tournament-private" type="checkbox" value={tournament?.nombre} />
+                            <Slider />
                         </Form.Group>
                     </div>
                     Agregar Equipo

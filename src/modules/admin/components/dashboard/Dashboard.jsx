@@ -33,15 +33,27 @@ const Dashboard = () => {
                     </span>
                     Torneos
                 </Sidebar.Button>
-                <Sidebar.Button to='/game'>
+                <Sidebar.Button to='/games'>
                     <span className="material-symbols-outlined">
                         stadia_controller
                     </span>
                     Partidos
                 </Sidebar.Button>
+                <Sidebar.Button to='/teams'>
+                    <span className="material-symbols-outlined">
+                        group
+                    </span>
+                    Equipos
+                </Sidebar.Button>
+                <Sidebar.Footer>
+                    <span className="material-symbols-outlined">
+                        account_circle
+                    </span>
+                    Eduardo Salas
+                </Sidebar.Footer>
             </Sidebar>
             <div className={stylesheet['Dashboard-display']}>
-                <Outlet/>
+                <Outlet />
             </div>
         </div>
     )

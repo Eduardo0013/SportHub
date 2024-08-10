@@ -3,6 +3,7 @@ import Statistics from '../pages/Statistics'
 import User from '../pages/User'
 import Tournament from '../pages/Tournament'
 import Game from '../pages/Game'
+import Team from '../pages/Team'
 
 const routes = [
     {
@@ -22,8 +23,12 @@ const routes = [
         element: <Tournament />
     },
     {
-        path: '/game',
-        element: <Game/>
+        path: '/games',
+        element: <Game />
+    },
+    {
+        path: '/teams',
+        element: <Team />
     }
 ]
 

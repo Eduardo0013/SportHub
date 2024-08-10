@@ -6,11 +6,11 @@ import ButtonLink from "../../core/components/button-link/ButtonLink"
 import CreateTournamentModal from "../components/create-tournament-modal/CreateTournamentModal"
 
 const Tournament = () => {
-    const { isActive,handleOpen,handleClose } = useModal()
-    const [sport,setSport] = useState(null)
+    const { isActive, handleOpen, handleClose } = useModal()
+    const [tournament, setTournament] = useState(null)
 
     const handleClickButtonLink = () => {
-        setSport({
+        setTournament({
             nombre: 'Futbol',
         })
         handleOpen()
@@ -21,9 +21,9 @@ const Tournament = () => {
             <ListView>
                 <ListView.Header>
                     Torneos
-                    <Button 
-                    onClick={handleOpen}
-                    className='text-sm'>Crear</Button>
+                    <Button
+                        onClick={handleOpen}
+                        className='text-sm'>Crear</Button>
                 </ListView.Header>
                 <ListView.Row>
                     <ListView.Details
@@ -32,7 +32,7 @@ const Tournament = () => {
                     <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
                 </ListView.Row>
             </ListView>
-            {isActive && <CreateTournamentModal handleClose={handleClose}/>}
+            {isActive && <CreateTournamentModal handleClose={handleClose} />}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 .Sidebar {
-    @apply bg-slate-900 text-white font-medium p-4 gap-1;
+    @apply bg-slate-900 text-white font-medium p-4 flex flex-col gap-1;
 }
 .Sidebar-header {
     @apply p-4 text-xl
@@ -12,4 +12,7 @@
 }
 .Sidebar-button\.is-active {
     @apply bg-slate-800
+}
+.Sidebar-footer {
+    @apply p-4 hover:cursor-pointer hover:bg-slate-800 rounded-md mt-auto flex gap-3;
 }

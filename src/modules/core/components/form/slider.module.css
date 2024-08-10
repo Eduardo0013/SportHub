@@ -1,0 +1,7 @@
+.Slider {
+    @apply flex items-center rounded-full bg-gray-200 p-1 shadow-sm w-12 cursor-pointer
+}
+.Slider-ball {
+    appearance: none;
+    @apply bg-white p-2 rounded-full cursor-pointer
+}

@@ -30,7 +30,7 @@ const Button = ({ children, ...props }) => {
 
 const Footer = ({ children, ...props }) => {
     return (
-        <div  {...props}>
+        <div className={stylesheet['Sidebar-footer']} {...props}>
             {children}
         </div>
     )

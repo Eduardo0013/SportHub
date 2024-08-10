@@ -1,0 +1,27 @@
+.CreateTeamModal {
+    @apply flex fixed top-0 left-0 right-0 bottom-0 justify-center items-center gap-1 bg-black bg-opacity-20
+}
+.CreateTeamModal-form {
+    @apply border rounded-md w-5/12 bg-white gap-3 p-0;
+    animation: fade 0.5s;
+}
+.CreateTeamModal-form_header {
+    @apply px-4 py-3 border-b text-xl font-semibold items-center flex gap-3
+}
+.CreateTeamModal-form_body {
+    @apply p-4
+}
+.CreateTeamModal-form_footer {
+    @apply flex gap-2 justify-end p-4 bg-gray-50
+}
+.CreateTeamModal-form_row {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(15rem, 1fr));
+    gap: 1rem;
+}
+@keyframes fade {
+    from {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+}
