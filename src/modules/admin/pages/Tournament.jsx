@@ -4,10 +4,14 @@ import ListView from "../../core/components/listview/ListView"
 import Button from "../../core/components/button/Button"
 import ButtonLink from "../../core/components/button-link/ButtonLink"
 import CreateTournamentModal from "../components/create-tournament-modal/CreateTournamentModal"
+import useFetch from "@Modules/core/hooks/useFetch"
+import { TORNEOS } from "@Modules/shared/config/web-services"
+import { v4 } from "uuid"
 
 const Tournament = () => {
     const { isActive, handleOpen, handleClose } = useModal()
     const [tournament, setTournament] = useState(null)
+    const { loading, value, error } = useFetch(TORNEOS)
 
     const handleClickButtonLink = () => {
         setTournament({
@@ -25,12 +29,14 @@ const Tournament = () => {
                         onClick={handleOpen}
                         className='text-sm'>Crear</Button>
                 </ListView.Header>
-                <ListView.Row>
-                    <ListView.Details
-                        title='EuroCopa / 1'
-                        subtitle='Creación: 2022-08-01' />
-                    <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
-                </ListView.Row>
+                {value?.torneos.map(torneo => (
+                    <ListView.Row key={v4()}>
+                        <ListView.Details
+                            title={torneo.nombre}
+                            subtitle={`Creación: ${torneo.createdAt}`} />
+                        <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
+                    </ListView.Row>
+                ))}
             </ListView>
             {isActive && <CreateTournamentModal handleClose={handleClose} />}
         </div>

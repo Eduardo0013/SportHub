@@ -11,10 +11,12 @@ EQUIPOS = `${BASE_URL}equipos`,
 VITAL_SIGNS = `${BASE_URL}vital-signs`,
 WEARABLES = `${BASE_URL}wearables`,
 TORNEOS = `${BASE_URL}torneos`,
-TORNEOS_SHOW = `${TORNEOS}/show`
+TORNEOS_SHOW = `${TORNEOS}/show`,
+PARTIDOS = `${BASE_URL}partidos`
 
 export {
     USERS,
+    PARTIDOS,
     ROLES,
     PERMISOS,
     DEPORTES,

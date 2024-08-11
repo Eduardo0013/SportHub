@@ -3,13 +3,14 @@
 }
 .CreateTournamentModal-form {
     @apply border rounded-md w-5/12 bg-white gap-3 p-0;
+    max-height: 80vh;
     animation: fade 0.5s;
 }
 .CreateTournamentModal-form_header {
     @apply px-4 py-3 border-b text-xl font-semibold items-center flex gap-3
 }
 .CreateTournamentModal-form_body {
-    @apply p-4
+    @apply p-4 overflow-y-scroll;
 }
 .CreateTournamentModal-form_footer {
     @apply flex gap-2 justify-end p-4 bg-gray-50
