@@ -2,7 +2,7 @@
     @apply flex fixed top-0 left-0 right-0 bottom-0 justify-center items-center gap-1 bg-black bg-opacity-20
 }
 .CreateTeamModal-form {
-    @apply border rounded-md w-5/12 bg-white gap-3 p-0;
+    @apply border rounded-md w-3/12 bg-white gap-3 p-0;
     animation: fade 0.5s;
 }
 .CreateTeamModal-form_header {

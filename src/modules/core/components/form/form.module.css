@@ -1,5 +1,5 @@
 .Form {
-    @apply flex flex-col p-4
+    @apply flex flex-col p-4 gap-2
 }
 .Form-group {
     @apply flex flex-col gap-2

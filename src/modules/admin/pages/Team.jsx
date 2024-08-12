@@ -30,7 +30,7 @@ const Team = () => {
                         className='text-sm'>Crear</Button>
                 </ListView.Header>
                 {value?.equipos?.map(({nombre,createdAt}) => (
-                    <ListView.Row>
+                    <ListView.Row key={v4()}>
                         <ListView.Details
                             title={nombre}
                             subtitle={createdAt} />

@@ -1,0 +1,6 @@
+.Bubble {
+    @apply flex py-3 gap-1
+}
+.Bubble-item {
+    @apply p-3 block border rounded-md shadow-sm cursor-pointer hover:bg-gray-50
+}

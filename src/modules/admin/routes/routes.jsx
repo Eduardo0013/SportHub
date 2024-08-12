@@ -7,27 +7,27 @@ import Team from '../pages/Team'
 
 const routes = [
     {
-        path: '/',
+        path: 'dashboard',
         element: <Statistics />
     },
     {
-        path: '/users',
+        path: 'users',
         element: <User />
     },
     {
-        path: '/deportes',
+        path: 'deportes',
         element: <Sport />
     },
     {
-        path: '/torneos',
+        path: 'torneos',
         element: <Tournament />
     },
     {
-        path: '/games',
+        path: 'games',
         element: <Game />
     },
     {
-        path: '/teams',
+        path: 'teams',
         element: <Team />
     }
 ]

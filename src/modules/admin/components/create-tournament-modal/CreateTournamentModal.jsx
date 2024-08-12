@@ -1,3 +1,5 @@
+import { v4 } from "uuid"
+import { EQUIPOS } from '@Modules/shared/config/web-services'
 import Button from "@Modules/core/components/button/Button"
 import Form from "@Modules/core/components/form/Form"
 import stylesheet from './create-tournament-modal.module.css'
@@ -5,9 +7,13 @@ import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
 import ComboBox from '@Modules/core/components/form/ComboBox'
 import SportComboBoxDetails from '../sport-combox-details/SportComboBoxDetails'
 import Slider from '@Modules/core/components/form/Slider'
-
+import useFetch from '@Modules/core/hooks/useFetch'
+import Bubble from '@Modules/core/components/bubble/Bubble'
+import { useState } from "react"
 
 const CreateTournamentModal = ({ tournament, handleClose }) => {
+    const { loading, value, error } = useFetch(EQUIPOS)
+    const [miembros, setMiembros] = useState([])
 
     return (
         <div className={stylesheet.CreateTournamentModal}>
@@ -52,7 +58,26 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
                             <Slider />
                         </Form.Group>
                     </div>
-                    Agregar Equipo
+                    <Form.Group>
+                        <Form.Label htmlFor='tournament-members'>Miembros</Form.Label>
+                        <ComboBox id='tournament-members'>
+                            {value?.equipos?.map(({ nombre, id }) => (
+                                <ComboBox.Item
+                                    key={v4()}
+                                    data-id={id}
+                                    data-name={nombre}>
+                                    {nombre}
+                                </ComboBox.Item>
+                            ))}
+                        </ComboBox>
+                    </Form.Group>
+                    <div className={stylesheet['CreateTournamentModal-form_row']}>
+                        <Bubble>
+                            {miembros?.map(({ nombre }) => (
+                                <Bubble.Item key={v4()}>{nombre}</Bubble.Item>
+                            ))}
+                        </Bubble>
+                    </div>
                 </div>
                 <div className={stylesheet['CreateTournamentModal-form_footer']}>
                     <Button type="submit">
