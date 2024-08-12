@@ -61,6 +61,12 @@ const Dashboard = () => {
                     </span>
                     Equipos
                 </Sidebar.Button>
+                <Sidebar.Button to='/admin/medical'>
+                    <span className="material-symbols-outlined">
+                        vital_signs
+                    </span>
+                    Médico
+                </Sidebar.Button>
                 <Sidebar.Footer>
                     <span className="material-symbols-outlined">
                         account_circle

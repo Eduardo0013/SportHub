@@ -4,6 +4,7 @@ import User from '../pages/User'
 import Tournament from '../pages/Tournament'
 import Game from '../pages/Game'
 import Team from '../pages/Team'
+import Medical from '../pages/Medical'
 
 const routes = [
     {
@@ -29,6 +30,10 @@ const routes = [
     {
         path: 'teams',
         element: <Team />
+    },
+    {
+        path: 'medical',
+        element: <Medical/>
     }
 ]
 
