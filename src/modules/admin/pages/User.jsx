@@ -11,7 +11,7 @@ import { v4 } from 'uuid'
 const User = () => {
     const { isActive, handleOpen, handleClose } = useModal()
     const [user, setUser] = useState(null)
-    const { loading, value, error } = useFetch(USERS)
+    const [ loading, value, error ] = useFetch(USERS)
 
     const handleClickButtonLink = (user) => {
         return () => {

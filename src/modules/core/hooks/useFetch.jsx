@@ -23,11 +23,11 @@ const useFetch = (endpoint) => {
         })();
     },[endpoint])
 
-    return {
+    return [
         loading,
         value,
         error
-    }
+    ]
 }
 
 export default useFetch

@@ -1,21 +1,19 @@
-import { useState } from "react"
-import ComboBox from '@Modules/core/components/form/ComboBox'
+import { forwardRef, useState } from "react"
+import Select from 'react-select'
+import useFetch from '@Modules/core/hooks/useFetch'
+import { EQUIPOS } from '@Modules/shared/config/web-services'
 
-const TeamComboBoxDetails = ({ value = undefined,id = undefined}) => {
+const TeamComboBoxDetails = ({ref,...props}) => {
+    const { loading, value, error} = useFetch(EQUIPOS)
     const [teams, setTeams] = useState([
-        { nombre: 'Barcelona Fc'},
-        { nombre: 'RealMadrid' }
+        { label: 'Barcelona Fc'},
+        { label: 'RealMadrid' }
     ])
 
-    return (
-        <ComboBox value={value} id={id}>
-            {teams.map(({ nombre }) => {
-                return (
-                    <ComboBox.Item>{nombre}</ComboBox.Item>
-                )
-            })}
-        </ComboBox>
-    )
+    return forwardRef((props,ref) => (
+        <Select options={teams} />
+
+    ))
 }
 
 export default TeamComboBoxDetails

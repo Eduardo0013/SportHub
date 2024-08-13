@@ -11,7 +11,7 @@ import { v4 } from "uuid"
 const Game = () => {
     const { isActive, handleOpen, handleClose } = useModal()
     const [sport, setSport] = useState(null)
-    const { loading, value, error } = useFetch(PARTIDOS)
+    const [ loading, value, error ] = useFetch(PARTIDOS)
 
     const handleClickButtonLink = () => {
         setSport({

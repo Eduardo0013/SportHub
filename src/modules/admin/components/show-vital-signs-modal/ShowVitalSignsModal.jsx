@@ -1,29 +1,49 @@
 import stylesheet from './show-vital-signs-modal.module.css'
+import Table from '@Modules/core/components/table/Table'
+import Button from '@Modules/core/components/button/Button'
 
-const ShowVitalSignsModal = () => {
+const ShowVitalSignsModal = ({ handleClose }) => {
     return (
         <div className={stylesheet.CreateVitalSignsModal}>
-            <table className='bg-white rounded overflow-hidden table-auto text-center w-6/12'>
-                <thead className='bg-white border-b'>
-                    <tr>
-                        <th className='p-2'>ID</th>
-                        <th className='p-2'>ritmo cardiaco</th>
-                        <th className='p-2'>estress</th>
-                    </tr>
-                </thead>
-                <tbody className='overflow-y-scroll'>
-                    <tr className='border-b'>
-                        <td className='p-2'>1</td>
-                        <td className='p-2'>100</td>
-                        <td className='p-2'>30</td>
-                    </tr>
-                    <tr className='border-b'>
-                        <td className='p-2'>1</td>
-                        <td className='p-2'>100</td>
-                        <td className='p-2'>30</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div className={stylesheet['CreateVitalSignsModal-table']}>
+                <Table className='w-full'>
+                    <Table.Head>
+                        <Table.Row>
+                            <Table.Column>
+                                Id
+                            </Table.Column>
+                            <Table.Column>
+                                Model
+                            </Table.Column>
+                            <Table.Column>
+                                Ritmo Cardiaco
+                            </Table.Column>
+                            <Table.Column>
+                                Estres
+                            </Table.Column>
+                        </Table.Row>
+                    </Table.Head>
+                    <Table.Body>
+                        <Table.Row>
+                            <Table.Column>
+                                ---
+                            </Table.Column>
+                            <Table.Column>
+                                ---
+                            </Table.Column>
+                            <Table.Column>
+                                ---
+                            </Table.Column>
+                            <Table.Column>
+                                ---
+                            </Table.Column>
+                        </Table.Row>
+                    </Table.Body>
+                </Table>
+                <div className={stylesheet['CreateVitalSignsModal-buttons-group']}>
+                    <Button onClick={handleClose}>Cerrar</Button>
+                </div>
+            </div>
         </div>
     )
 }

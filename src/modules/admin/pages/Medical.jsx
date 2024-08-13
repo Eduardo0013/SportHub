@@ -27,7 +27,7 @@ const Medical = () => {
 
     const handleClickButtonLink = (ev) => {
         ev.stopPropagation()
-        handleOpen()
+        //handleOpen()
     }
 
     const handleClickRow = (id) => {
@@ -55,14 +55,11 @@ const Medical = () => {
                                 className={'p-2 text-xs rounded-full border ' + (status ? 'border-green-500 text-green-500 font-semibold' : 'border-red-500 text-red-500 font-semibold')}>
                                 {status ? 'Online' : 'Offline'}
                             </div>
-                            <ButtonLink onClick={handleClickButtonLink}>
-                                Edit
-                            </ButtonLink>
                         </ListView.ItemsGroup>
                     </ListView.Row>
                 ))}
             </ListView>
-            {isActive && <ShowVitalSignsModal/>}
+            {isActive && <ShowVitalSignsModal handleClose={handleClose}/>}
         </div>
     )
 }
