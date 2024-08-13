@@ -10,25 +10,25 @@ import Alert from '@Modules/core/components/alert/Alert'
 
 const CreateTeamModal = ({ team, handleClose }) => {
     const [alert,setAlert] = useState({ isVisible : false, type: 'error' })
-    const [loading,value,error] = useFetch(USERS)
-    const [loadingDeportes,deportesResponse,errorDeportes] = useFetch(DEPORTES)
+    const usersResponse = useFetch(USERS)
+    const deportesResponse = useFetch(DEPORTES)
     const [users,setUsers] = useState([])
     const [deportes,setDeportes] = useState([])
     const deporteRef = useRef(null)
     const miembroRef = useRef(null)
 
     useEffect(() => {
-        if(value){
-            const users = value.users.map(user => {
+        if(usersResponse.value){
+            const users = usersResponse.value.users.map(user => {
                 return {
-                    label : `${user.email}`,
+                    label : user.email,
                     value: user.id
                 }
             })
             setUsers(users)
         }
-        if(deportesResponse){
-            const deportes = deportesResponse.deportes.map(deporte => {
+        if(deportesResponse.value){
+            const deportes = deportesResponse.value.deportes.map(deporte => {
                 return {
                     value : deporte.id,
                     label : deporte.nombre
@@ -36,7 +36,7 @@ const CreateTeamModal = ({ team, handleClose }) => {
             })
             setDeportes(deportes)
         }
-    },[value])
+    },[deportesResponse.value])
 
     const handleSubmit = async (ev) => {
         ev.preventDefault()

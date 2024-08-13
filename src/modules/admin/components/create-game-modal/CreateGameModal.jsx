@@ -2,9 +2,26 @@ import Button from "@Modules/core/components/button/Button"
 import Form from "@Modules/core/components/form/Form"
 import stylesheet from './create-game-modal.module.css'
 import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
-import TeamComboBoxDetails from "../team-combobox-details/TeamComboBoxDetails"
+import Select from "react-select"
+import useFetch from '@Modules/core/hooks/useFetch'
+import { EQUIPOS } from '@Modules/shared/config/web-services'
+import { useEffect, useState } from "react"
 
 const CreateGameModal = ({ game, handleClose }) => {
+    const equiposResponse = useFetch(EQUIPOS)
+    const [equipos,setEquipos] = useState(null)
+
+    useEffect(() => {
+        if(equiposResponse.value){
+            const equipos = equiposResponse.value.equipos.map(equipo => {
+                return {
+                    label: equipo.nombre,
+                    value: equipo.id
+                }
+            })
+            setEquipos(equipos)
+        }
+    },[equiposResponse.value])
 
     return (
         <div className={stylesheet.CreateGameModal}>
@@ -17,11 +34,13 @@ const CreateGameModal = ({ game, handleClose }) => {
                 <div className={stylesheet['CreateGameModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='game-team-one'>Equipo 1</Form.Label>
-                        <TeamComboBoxDetails value='Barcelona FC' id='game-team-one'/>
+                        <Select
+                            options={equipos}/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='game-team-two'>Equipo 2</Form.Label>
-                        <TeamComboBoxDetails id='game-team-two' value='RealMadrid' />
+                        <Select
+                            options={equipos}/>
                     </Form.Group>
                 </div>
                 <div className={stylesheet['CreateGameModal-form_footer']}>

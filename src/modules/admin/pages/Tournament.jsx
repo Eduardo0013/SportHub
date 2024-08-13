@@ -11,7 +11,7 @@ import useFetch from "@Modules/core/hooks/useFetch"
 const Tournament = () => {
     const { isActive, handleOpen, handleClose } = useModal()
     const [tournament, setTournament] = useState(null)
-    const [ loading, value, error ] = useFetch(TORNEOS)
+    const { loading, value, error } = useFetch(TORNEOS)
 
     const handleClickButtonLink = () => {
         setTournament({
@@ -34,7 +34,10 @@ const Tournament = () => {
                         <ListView.Details
                             title={torneo.nombre}
                             subtitle={`Creación: ${torneo.createdAt}`} />
-                        <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
+                        <div className="flex gap-4">
+                            {torneo.status ? 'Activo' : 'Finalizado'}
+                            <ButtonLink onClick={handleClickButtonLink}>Edit</ButtonLink>
+                        </div>
                     </ListView.Row>
                 ))}
             </ListView>

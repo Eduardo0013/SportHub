@@ -11,7 +11,7 @@ import { v4 } from "uuid"
 const Game = () => {
     const { isActive, handleOpen, handleClose } = useModal()
     const [sport, setSport] = useState(null)
-    const [ loading, value, error ] = useFetch(PARTIDOS)
+    const partidosResponse = useFetch(PARTIDOS)
 
     const handleClickButtonLink = () => {
         setSport({
@@ -29,7 +29,7 @@ const Game = () => {
                         onClick={handleOpen}
                         className='text-sm'>Crear</Button>
                 </ListView.Header>
-                {value?.partidos && value?.partidos?.map(({ EquipoUno, EquipoDos, createdAt, status, Resultados }) => (
+                {partidosResponse?.value?.partidos && partidosResponse?.value?.partidos?.map(({ EquipoUno, EquipoDos, createdAt, status, Resultados }) => (
                     <ListView.Row key={v4()}>
                         <ListView.Details
                             title={`${EquipoUno?.nombre} vs ${EquipoDos?.nombre}`}

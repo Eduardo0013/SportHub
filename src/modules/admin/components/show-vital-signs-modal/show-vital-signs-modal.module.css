@@ -7,7 +7,7 @@
 }
 
 .CreateVitalSignsModal-buttons-group {
-    @apply bg-gray-100 p-2 self-end mt-auto w-full;
+    @apply bg-gray-100 p-2 self-end flex justify-end mt-auto w-full;
 }
 
 @keyframes fade {

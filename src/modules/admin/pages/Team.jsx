@@ -11,7 +11,7 @@ import { v4 } from "uuid"
 const Team = () => {
     const { isActive, handleOpen, handleClose } = useModal()
     const [team, setTeam] = useState(null)
-    const [ loading, value, error ] = useFetch(EQUIPOS)
+    const { loading, value, error } = useFetch(EQUIPOS)
 
     const handleClickButtonLink = () => {
         setTeam({

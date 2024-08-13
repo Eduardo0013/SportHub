@@ -11,16 +11,20 @@ import useFetch from '@Modules/core/hooks/useFetch'
 import Alert from '@Modules/core/components/alert/Alert'
 
 const CreateTournamentModal = ({ tournament, handleClose }) => {
-    const [loading, value, error] = useFetch(DEPORTES)
-    const [equiposLoading, equiposResponse, equiposError] = useFetch(EQUIPOS)
+    const deportesResponse = useFetch(DEPORTES)
+    const equiposResponse = useFetch(EQUIPOS)
     const [deportes, setDeportes] = useState([])
     const [equipos, setEquipos] = useState([])
     const deporteRef = useRef(null)
     const miembrosRef = useRef(null)
+    const [alert, setAlert] = useState({
+        isVisible: false,
+        type: 'error'
+    })
 
     useEffect(() => {
-        if (value) {
-            const deportes = value.deportes.map(deporte => {
+        if (deportesResponse.value) {
+            const deportes = deportesResponse.value.deportes.map(deporte => {
                 return {
                     label: deporte.nombre,
                     value: deporte.id
@@ -28,8 +32,8 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
             })
             setDeportes(deportes)
         }
-        if (equiposResponse) {
-            const equipos = equiposResponse.equipos.map(equipo => {
+        if (equiposResponse.value) {
+            const equipos = equiposResponse.value.equipos.map(equipo => {
                 return {
                     label: equipo.nombre,
                     value: equipo.id
@@ -37,7 +41,7 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
             })
             setEquipos(equipos)
         }
-    }, [value])
+    }, [deportesResponse.value])
 
     const handleSubmit = async (ev) => {
         ev.preventDefault()
@@ -61,10 +65,21 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
             },
             body: JSON.stringify(payload)
         })
+        const json = await response.json()
+
         if (!response.ok) {
-            const json = await response.json()
+            setAlert({
+                type: 'error',
+                isVisible: true,
+                message: 'Se produjo un error'
+            })
             return
         }
+        setAlert({
+            type: 'success',
+            isVisible: true,
+            message: json.message
+        })
     }
 
     return (
@@ -75,7 +90,7 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
                 <div className={stylesheet['CreateTournamentModal-form_header']}>
                     Editar
                 </div>
-                <Alert>Alerta</Alert>
+                {alert.isVisible && <Alert type={alert.type}>{alert.message}</Alert>}
                 <div className={stylesheet['CreateTournamentModal-form_body']}>
                     <div className={stylesheet['CreateTournamentModal-form_row']}>
                         <Form.Group>
