@@ -16,3 +16,9 @@
 .Sidebar-footer {
     @apply p-4 hover:cursor-pointer hover:bg-slate-800 rounded-md mt-auto flex gap-3 items-center;
 }
+
+@media(max-width: 768px){
+    .Sidebar {
+        @apply fixed h-full
+    }
+}

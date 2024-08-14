@@ -39,14 +39,13 @@ const LoginForm = () => {
     }
 
     return (
-        <div className='flex items-center flex-col gap-2'>
-            {alert?.isVisible && <Alert type={alert?.type}>
-                <p>
-                    Credenciales incorrectas
-                </p>
-            </Alert>}
-            <Form className="border rounded-md bg-white" onSubmit={handleSubmit}>
-                <h3 className='text-2xl font-semibold text-center py-2'>Iniciar Sesión</h3>
+        <div className='flex items-center justify-center flex-col gap-2 grow h-full'>
+            <div className='bg-black p-2 font-bold rounded-md text-center w-24 h-24 text-3xl'>
+                <div className='text-white'>Sport</div>
+                <div className='bg-orange-400 rounded-sm'>Hub</div>
+            </div>
+            <Form className="bg-white sm:w-10/12 md:w-6/12 lg:w-3/12 gap-5" onSubmit={handleSubmit}>
+                <h3 className='text-2xl font-bold text-center py-2'>Inicia sesión en tu cuenta</h3>
                 <Form.Group>
                     <Form.Label>Correo electrónico</Form.Label>
                     <Form.Control id="email"/>
@@ -55,11 +54,17 @@ const LoginForm = () => {
                     <Form.Label>Contraseña</Form.Label>
                     <Form.Control type="password" id="password"/>
                 </Form.Group>
-                <div className='flex gap-3 justify-end'>
-                    <ButtonLink>Crear Cuenta</ButtonLink>
-                    <Button>Entrar</Button>
-                </div>
+                <Button>Entrar</Button>
             </Form>
+            <div className='flex gap-2 text-base'>
+                <p className='text-gray-600'>No tienes cuenta? </p>
+                <ButtonLink>Crea una</ButtonLink>
+            </div>
+            {alert?.isVisible && <Alert type={alert?.type}>
+                <p>
+                    Credenciales incorrectas
+                </p>
+            </Alert>}
         </div>
     )
 }

@@ -27,7 +27,7 @@ const Dashboard = () => {
                 </Sidebar.Header>
                 <Sidebar.Button to='/admin/dashboard'>
                     <span className="material-symbols-outlined">
-                        home
+                        grid_view
                     </span>
                     Dashboard
                 </Sidebar.Button>

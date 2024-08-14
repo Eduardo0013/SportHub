@@ -1,5 +1,5 @@
 .ListView {
-    @apply flex flex-col
+    @apply flex flex-col bg-white
 }
 .ListView-header {
     @apply px-4 py-5 text-xl font-medium border-b flex justify-between items-center

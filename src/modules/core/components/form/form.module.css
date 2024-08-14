@@ -1,11 +1,14 @@
 .Form {
     @apply flex flex-col p-4 gap-2
 }
+.Form-label{
+    @apply font-medium
+}
 .Form-group {
     @apply flex flex-col gap-2
 }
 .Form-control {
-    @apply border border-gray-300  shadow-sm rounded-md p-2 font-normal
+    @apply border border-gray-300  shadow-sm rounded-md p-2
 }
 .Form-control:focus{
     @apply focus:outline-indigo-500

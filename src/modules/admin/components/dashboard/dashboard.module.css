@@ -1,11 +1,26 @@
 .Dashboard {
     display: grid;
     grid-template-columns: 16% 1fr;
-    height: 100vh;
-    max-height: 100vh;
-    overflow-y: hidden;
+    @apply overflow-y-hidden max-h-screen h-screen bg-indigo-50;
 }
 .Dashboard-display {
     max-height: 100vh;
     overflow-y: scroll;
+}
+
+@media(max-width: 768px){
+    .Dashboard {
+        grid-template-columns: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .Dashboard {
+        grid-template-columns: 20% 1fr;
+    }
+}
+@media (min-width: 1025px) {
+    .Dashboard {
+        grid-template-columns: 16% 1fr;
+    }
 }

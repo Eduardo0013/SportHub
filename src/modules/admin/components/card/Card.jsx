@@ -1,7 +1,7 @@
 const Card = ({children, ...props}) => {
     return (
         <div 
-            className="flex gap-2 border overflow-hidden p-3 rounded-md shadow-sm items-center justify-around" {...props}>
+            className="flex gap-2 border overflow-hidden bg-white p-3 rounded-md shadow-sm items-center" {...props}>
             { children }
         </div>
     )
