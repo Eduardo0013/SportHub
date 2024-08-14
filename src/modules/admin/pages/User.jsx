@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import Button from '@Modules/core/components/button/Button'
 import ListView from '@Modules/core/components/listview/ListView'
 import ButtonLink from '@Modules/core/components/button-link/ButtonLink'
@@ -10,6 +10,7 @@ import { v4 } from 'uuid'
 
 const User = () => {
     const { isActive, handleOpen, handleClose } = useModal()
+    const [alert,setAlert] = useState({ isVisible : false, type: 'error' })
     const [user, setUser] = useState(null)
     const{ loading, value, error } = useFetch(USERS)
 

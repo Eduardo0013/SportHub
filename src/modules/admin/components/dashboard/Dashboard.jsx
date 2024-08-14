@@ -23,7 +23,11 @@ const Dashboard = () => {
         <div className={stylesheet.Dashboard}>
             <Sidebar>
                 <Sidebar.Header>
-                    SportHub
+                    <div className='font-bold text-3xl'>
+                        <h3 className="text-white">
+                            Sport<span className='bg-orange-400 rounded-sm px-1 ml-2'>Hub</span>
+                        </h3>
+                    </div>
                 </Sidebar.Header>
                 <Sidebar.Button to='/admin/dashboard'>
                     <span className="material-symbols-outlined">
