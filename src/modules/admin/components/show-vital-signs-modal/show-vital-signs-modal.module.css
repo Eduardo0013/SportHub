@@ -3,7 +3,7 @@
 }
 
 .CreateVitalSignsModal-table {
-    @apply flex flex-col w-4/12 rounded-md overflow-hidden h-80 bg-white;
+    @apply flex flex-col lg:w-4/12 w-7/12 rounded-md overflow-hidden h-80 bg-white;
 }
 
 .CreateVitalSignsModal-buttons-group {

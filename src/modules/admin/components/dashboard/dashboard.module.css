@@ -14,12 +14,12 @@
     }
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
+@media (min-width: 769px) {
     .Dashboard {
-        grid-template-columns: 20% 1fr;
+        grid-template-columns: 30% 1fr;
     }
 }
-@media (min-width: 1025px) {
+@media (min-width: 1024px) {
     .Dashboard {
         grid-template-columns: 16% 1fr;
     }
