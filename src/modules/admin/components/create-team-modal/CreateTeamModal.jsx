@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { USERS, DEPORTES,EQUIPOS } from '@Modules/shared/config/web-services'
+import { USERS, DEPORTES, EQUIPOS } from '@Modules/shared/config/web-services'
 import stylesheet from './create-team-modal.module.css'
 import Form from '@Modules/core/components/form/Form'
 import Button from '@Modules/core/components/button/Button'
@@ -9,76 +9,82 @@ import useFetch from '@Modules/core/hooks/useFetch'
 import Alert from '@Modules/core/components/alert/Alert'
 
 const CreateTeamModal = ({ team, handleClose }) => {
-    const [alert,setAlert] = useState({ isVisible : false, type: 'error' })
+    const [alert, setAlert] = useState({ isVisible: false, type: 'error' })
     const usersResponse = useFetch(USERS)
     const deportesResponse = useFetch(DEPORTES)
-    const [users,setUsers] = useState([])
-    const [deportes,setDeportes] = useState([])
+    const [users, setUsers] = useState([])
+    const [deportes, setDeportes] = useState([])
     const deporteRef = useRef(null)
     const miembroRef = useRef(null)
 
     useEffect(() => {
-        if(usersResponse.value){
+        if (usersResponse.value) {
             const users = usersResponse.value.users.map(user => {
                 return {
-                    label : user.email,
+                    label: user.email,
                     value: user.id
                 }
             })
             setUsers(users)
         }
-        if(deportesResponse.value){
+        if (deportesResponse.value) {
             const deportes = deportesResponse.value.deportes.map(deporte => {
                 return {
-                    value : deporte.id,
-                    label : deporte.nombre
+                    value: deporte.id,
+                    label: deporte.nombre
                 }
             })
             setDeportes(deportes)
         }
-    },[deportesResponse.value])
+    }, [deportesResponse.value])
 
     const handleSubmit = async (ev) => {
         ev.preventDefault()
         const $form = ev.target
         const nombre = $form.querySelector('#team-name').value
         const deporte_id = deporteRef.current.getValue()[0].value
-        const miembros = miembroRef.current.getValue()
+        let miembros = miembroRef.current.getValue()
+
+        miembros = miembros.map(miembro => {
+            return {
+                user_id: miembro.value,
+            }
+        })
         const equipo = {
             nombre,
             deporte_id,
             miembros
         }
-        const response = await fetch(EQUIPOS,{
+        const response = await fetch(EQUIPOS, {
             method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Accept' : '*/*'
+                headers: {
+                'Content-Type': 'application/json',
+                'Accept': '*/*'
             },
             body: JSON.stringify(equipo)
         })
-        if(response.status === 404){
+        if (response.status === 404) {
             setAlert({
                 type: 'error',
                 message: '404 Not Found',
-                isVisible : true
+                isVisible: true
             })
             return
         }
         const json = await response.json()
 
-        if(!response.ok){
+        if (!response.ok) {
             setAlert({
                 type: 'error',
                 message: json.message,
-                isVisible : true
+                isVisible: true
             })
             return
         }
         setAlert({
-            type : 'success',
+            type: 'success',
             message: json.message,
-            isVisible : true
+            isVisible: true
         })
     }
 
@@ -98,16 +104,16 @@ const CreateTeamModal = ({ team, handleClose }) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='team-sport'>Deporte</Form.Label>
-                        <Select 
+                        <Select
                             options={deportes}
-                            ref={deporteRef}/>
+                            ref={deporteRef} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Miembros</Form.Label>
-                        <Select 
+                        <Select
                             isMulti
                             options={users}
-                            ref={miembroRef}/>
+                            ref={miembroRef} />
                     </Form.Group>
                 </div>
                 <div className={stylesheet['CreateTeamModal-form_footer']}>
