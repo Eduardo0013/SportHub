@@ -1,7 +1,9 @@
 # Sporthub
 ### Para correr este proyecto necesitas al menos node 18
 ### instrucciones:
-1.- git clone https://github.com/Eduardo0013/SportHub.git
-2.- cd SportHub
-3.- npm i
-4.- npm run dev
+<ul>
+  <li>1.- git clone https://github.com/Eduardo0013/SportHub.git</li>
+  <li>2.- cd SportHub</li>
+  <li>3.- npm i</li>
+  <li>4.- npm run dev</li>
+</ul>
