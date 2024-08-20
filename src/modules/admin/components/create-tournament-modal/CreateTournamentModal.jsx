@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react"
-import { v4 } from "uuid"
 import { EQUIPOS, DEPORTES, TORNEOS } from '@Modules/shared/config/web-services'
 import Button from "@Modules/core/components/button/Button"
 import Form from "@Modules/core/components/form/Form"
@@ -41,7 +40,7 @@ const CreateTournamentModal = ({ tournament, handleClose }) => {
             })
             setEquipos(equipos)
         }
-    }, [deportesResponse.value])
+    }, [deportesResponse.value,equiposResponse.value])
 
     const handleSubmit = async (ev) => {
         ev.preventDefault()
