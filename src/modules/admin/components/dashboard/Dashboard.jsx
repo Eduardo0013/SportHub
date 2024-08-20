@@ -9,7 +9,12 @@ const Dashboard = () => {
     const [user, setUser] = useState('loading...')
 
     useEffect(() => {
-        const userJson = JSON.parse(localStorage.getItem('user'))
+        const user = localStorage.getItem('user')
+        if(!user){
+            navigate('/')
+        }
+        const userJson = JSON.parse(user)
+
         setUser(userJson)
     }, [])
 
