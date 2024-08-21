@@ -6,12 +6,12 @@ import { DEPORTES } from "@Modules/shared/config/web-services"
 import { useState } from "react"
 import Alert from "../../../core/components/alert/Alert"
 
-const CreateSportModal = ({ sport, handleClose }) => {
+const CreateSportModal = ({ handleClose }) => {
     const [alert, setAlert] = useState({ isActive: false, type: 'error' })
 
-    const handleSubmit = (ev) => {
-        (async () => {
-            ev.preventDefault()
+    const handleSubmit = async (ev) => {
+        ev.preventDefault()
+        try {
             const $form = ev.target
             const nombre = $form.querySelector('#sport-name').value
             if(!nombre || nombre.length === 0){
@@ -46,7 +46,13 @@ const CreateSportModal = ({ sport, handleClose }) => {
                 message: json.message,
                 type: 'success'
             })
-        })()
+        } catch (error) {
+            setAlert({
+                isActive: true,
+                message: 'Error, contacta al administrador',
+                type: 'error'
+            })
+        }
     }
 
     return (
@@ -63,15 +69,12 @@ const CreateSportModal = ({ sport, handleClose }) => {
                 <div className={stylesheet['CreateSportModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='sport-name'>Nombre</Form.Label>
-                        <Form.Control id="sport-name" value={sport?.nombre} />
+                        <Form.Control id="sport-name" />
                     </Form.Group>
                 </div>
                 <div className={stylesheet['CreateSportModal-form_footer']}>
                     <Button type="submit">
                         Guardar
-                    </Button>
-                    <Button className='bg-red-600 hover:bg-red-500'>
-                        Eliminar
                     </Button>
                     <SecondaryButton
                         onClick={handleClose}>

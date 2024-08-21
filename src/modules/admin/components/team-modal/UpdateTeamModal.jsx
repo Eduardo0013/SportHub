@@ -1,22 +1,20 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { USERS, DEPORTES, EQUIPOS } from '@Modules/shared/config/web-services'
 import stylesheet from './create-team-modal.module.css'
 import Form from '@Modules/core/components/form/Form'
 import Button from '@Modules/core/components/button/Button'
 import SecondaryButton from '@Modules/core/components/button/SecondaryButton'
 import Select from 'react-select'
-import useFetch from '@Modules/core/hooks/useFetch'
 import Alert from '@Modules/core/components/alert/Alert'
+import useFetch from '@Modules/core/hooks/useFetch'
 
-const CreateTeamModal = ({ team, handleClose }) => {
+const UpdateTeamModal = ({ handleClose }) => {
     const [alert, setAlert] = useState({ isVisible: false, type: 'error' })
     const usersResponse = useFetch(USERS)
     const deportesResponse = useFetch(DEPORTES)
     const [users, setUsers] = useState([])
     const [deportes, setDeportes] = useState([])
-    const deporteRef = useRef(null)
-    const miembroRef = useRef(null)
-
+    
     useEffect(() => {
         if (usersResponse.value) {
             const users = usersResponse.value.users.map(user => {
@@ -37,27 +35,23 @@ const CreateTeamModal = ({ team, handleClose }) => {
             setDeportes(deportes)
         }
     }, [deportesResponse.value])
-
-    const handleSubmit = async (ev) => {
+    
+    const handleSubmit = async () => {
         ev.preventDefault()
         const $form = ev.target
-        const nombre = $form.querySelector('#team-name').value
-        const deporte_id = deporteRef.current.getValue()[0].value
-        let miembros = miembroRef.current.getValue()
+        const formData = new FormData($form)
+        const nombre = formData.get('team-name')
+        const deporte_id = formData.get('team-sport')
+        const miembros = formData.get('team-members')
 
-        miembros = miembros.map(miembro => {
-            return {
-                user_id: miembro.value,
-            }
-        })
         const equipo = {
             nombre,
             deporte_id,
             miembros
         }
         const response = await fetch(EQUIPOS, {
-            method: 'POST',
-                headers: {
+            method: 'PATCH',
+            headers: {
                 'Content-Type': 'application/json',
                 'Accept': '*/*'
             },
@@ -94,36 +88,40 @@ const CreateTeamModal = ({ team, handleClose }) => {
                 className={stylesheet['CreateTeamModal-form']}
                 onSubmit={handleSubmit}>
                 <div className={stylesheet['CreateTeamModal-form_header']}>
-                    Editar
+                    Editar - Proximamente
                 </div>
                 {alert.isVisible && <Alert type={alert.type}>{alert?.message}</Alert>}
                 <div className={stylesheet['CreateTeamModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='team-name'>Nombre</Form.Label>
-                        <Form.Control id="team-name" value={team?.nombre} />
+                        <Form.Control
+                            name='team-name'
+                            id="team-name"
+                            required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='team-sport'>Deporte</Form.Label>
                         <Select
+                            name='team-sport'
+                            id='team-sport'
                             options={deportes}
-                            ref={deporteRef} />
+                            required />
                     </Form.Group>
                     <Form.Group>
-                        <Form.Label>Miembros</Form.Label>
+                        <Form.Label htmlFor='team-members'>Miembros</Form.Label>
                         <Select
-                            isMulti
                             options={users}
-                            ref={miembroRef} />
+                            id='team-members'
+                            name='team-members'
+                            isMulti />
                     </Form.Group>
                 </div>
                 <div className={stylesheet['CreateTeamModal-form_footer']}>
-                    <Button type="submit">
-                        Guardar
-                    </Button>
-                    <Button className='bg-red-600 hover:bg-red-500'>
-                        Eliminar
+                    <Button type="submit" disabled>
+                        Actualizar
                     </Button>
                     <SecondaryButton
+                        type='button'
                         onClick={handleClose}>
                         Cerrar
                     </SecondaryButton>
@@ -133,4 +131,4 @@ const CreateTeamModal = ({ team, handleClose }) => {
     )
 }
 
-export default CreateTeamModal
+export default UpdateTeamModal

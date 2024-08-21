@@ -8,7 +8,7 @@ import Select from "react-select"
 import useFetch from '@Modules/core/hooks/useFetch'
 import Alert from '@Modules/core/components/alert/Alert'
 
-const CreateUserModal = ({ user, handleClose, endpoint }) => {
+const CreateUserModal = ({ handleClose }) => {
     const [alert,setAlert] = useState({ isVisible : false, type: 'error' })
     const rolRef = useRef(null)
     const { loading, value } = useFetch(ROLES)
@@ -90,15 +90,15 @@ const CreateUserModal = ({ user, handleClose, endpoint }) => {
                 <div className={stylesheet['CreateUserModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='user-name'>Nombre</Form.Label>
-                        <Form.Control id="user-name" value={user?.nombre} />
+                        <Form.Control id="user-name" />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-apellido-paterno'>Apellido Paterno</Form.Label>
-                        <Form.Control id="user-apellido-paterno" value={user?.apellido_pat} required />
+                        <Form.Control id="user-apellido-paterno" required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-apellido-materno'>Apellido Materno</Form.Label>
-                        <Form.Control id="user-apellido-materno" value={user?.apellido_mat} required />
+                        <Form.Control id="user-apellido-materno" required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-rol'>Rol</Form.Label>
@@ -108,18 +108,17 @@ const CreateUserModal = ({ user, handleClose, endpoint }) => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-email'>Email</Form.Label>
-                        <Form.Control type="email" id="user-email" value={user?.email} required />
+                        <Form.Control type="email" id="user-email" required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-tel'>Número telefónico</Form.Label>
-                        <Form.Control id="user-tel" value={user?.numero_tel} required />
+                        <Form.Control id="user-tel" required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='user-password'>Contraseña</Form.Label>
                         <Form.Control
                             id="user-password"
                             type="password"
-                            value={user?.password}
                             placeholder='12345a'
                             pattern="^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]+$"
                             required />
@@ -128,9 +127,6 @@ const CreateUserModal = ({ user, handleClose, endpoint }) => {
                 <div className={stylesheet['CreateUserModal-form_footer']}>
                     <Button type="submit">
                         Guardar
-                    </Button>
-                    <Button className='bg-red-600 hover:bg-red-500'>
-                        Eliminar
                     </Button>
                     <SecondaryButton
                         onClick={handleClose}>

@@ -6,12 +6,14 @@ import stylesheet from './create-game-modal.module.css'
 import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
 import Select from "react-select"
 import useFetch from '@Modules/core/hooks/useFetch'
+import Alert from '@Modules/core/components/alert/Alert'
 
-const CreateGameModal = ({ game, handleClose }) => {
+const CreateGameModal = ({ handleClose }) => {
     const equiposResponse = useFetch(EQUIPOS)
     const torneosResponse = useFetch(TORNEOS)
     const [torneos,setTorneos] = useState(null)
     const [equipos,setEquipos] = useState(null)
+    const [alert, setAlert] = useState({ isActive: false, type: 'error' })
     const equipoUnoRef = useRef(null)
     const equipoDosRef = useRef(null)
     const torneoRef = useRef(null)
@@ -39,23 +41,51 @@ const CreateGameModal = ({ game, handleClose }) => {
 
     const handleSubmit = async (ev) => {
         ev.preventDefault()
-        const teamOne = equipoUnoRef.current.getValue()[0]
-        const teamTwo = equipoDosRef.current.getValue()[0]
-        const torneo = torneoRef.current.getValue()[0]
-        const partido = {
-            equipo_uno_id: teamOne.value,
-            equipo_dos_id: teamTwo.value,
-            torneo_id: torneo.value
+        try {            
+            const teamOne = equipoUnoRef.current.getValue()[0]
+            const teamTwo = equipoDosRef.current.getValue()[0]
+            const torneo = torneoRef.current.getValue()[0]
+            const partido = {
+                equipo_uno_id: teamOne.value,
+                equipo_dos_id: teamTwo.value,
+                torneo_id: torneo.value
+            }
+            const response = await fetch(PARTIDOS,{
+                method: 'POST',
+                headers: {
+                    'Content-Type' : 'application/json',
+                    'Accept' : '*/* '
+                },
+                body: JSON.stringify(partido)
+            })
+            const json = await response.json()
+            if(response.status === 400){
+                setAlert({
+                    isActive: true,
+                    message: 'El nombre del deporte debe ser unico',
+                    type: 'error'
+                })
+            }
+            if(!response.ok){
+                setAlert({
+                    isActive: true,
+                    message: json.message,
+                    type: 'error'
+                })
+                return
+            }
+            setAlert({
+                isActive: true,
+                message: json.message,
+                type: 'success'
+            })
+        } catch (error) {
+            setAlert({
+                isActive: true,
+                message: 'Error, contacta con el administrador',
+                type: 'error'
+            })
         }
-        const response = await fetch(PARTIDOS,{
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json',
-                'Accept' : '*/* '
-            },
-            body: JSON.stringify(partido)
-        })
-        console.log(await response.text())
     }
 
     return (
@@ -66,35 +96,38 @@ const CreateGameModal = ({ game, handleClose }) => {
                 <div className={stylesheet['CreateGameModal-form_header']}>
                     Editar
                 </div>
+                {alert.isActive && <Alert type={alert.type}>
+                    {alert?.message}
+                </Alert>}
                 <div className={stylesheet['CreateGameModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='game-team-one'>Equipo 1</Form.Label>
                         <Select
                             id='game-team-one'
                             ref={equipoUnoRef}
-                            options={equipos}/>
+                            options={equipos}
+                            required/>
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='game-team-two'>Equipo 2</Form.Label>
                         <Select
                             id='game-team-two'
                             ref={equipoDosRef}
-                            options={equipos}/>
+                            options={equipos}
+                            required />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label htmlFor='game-tournament'>Torneo</Form.Label>
                         <Select
                             id='game-tournament'
                             ref={torneoRef}
-                            options={torneos} />
+                            options={torneos} 
+                            required/>
                     </Form.Group>
                 </div>
                 <div className={stylesheet['CreateGameModal-form_footer']}>
                     <Button type="submit">
                         Guardar
-                    </Button>
-                    <Button className='bg-red-600 hover:bg-red-500'>
-                        Eliminar
                     </Button>
                     <SecondaryButton
                         onClick={handleClose}>

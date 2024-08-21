@@ -1,23 +1,21 @@
-import { useState } from "react"
 import useModal from "@Modules/core/hooks/useModal"
 import ListView from "@Modules/core/components/listview/ListView"
 import Button from "@Modules/core/components/button/Button"
 import ButtonLink from "@Modules/core/components/button-link/ButtonLink"
-import CreateTeamModal from '../components/create-team-modal/CreateTeamModal'
+import CreateTeamModal from '../components/team-modal/CreateTeamModal'
+import UpdateTeamModal from "../components/team-modal/UpdateTeamModal"
 import { EQUIPOS } from "../../shared/config/web-services"
 import useFetch from "@Modules/core/hooks/useFetch"
 import { v4 } from "uuid"
 
 const Team = () => {
-    const { isActive, handleOpen, handleClose } = useModal()
-    const [team, setTeam] = useState(null)
-    const { loading, value, error } = useFetch(EQUIPOS)
+    const createModal = useModal()
+    const updateModal = useModal()
+    const { value } = useFetch(EQUIPOS)
 
-    const handleClickButtonLink = () => {
-        setTeam({
-            nombre: 'Futbol',
-        })
-        handleOpen()
+    const handleClickButtonLink = (ev) => {
+        ev.preventDefault()
+        updateModal.handleOpen()
     }
 
     return (
@@ -26,7 +24,7 @@ const Team = () => {
                 <ListView.Header>
                     Equipos
                     <Button
-                        onClick={handleOpen}
+                        onClick={createModal.handleOpen}
                         className='text-sm'>Crear</Button>
                 </ListView.Header>
                 {value?.equipos?.map(({nombre,createdAt}) => (
@@ -42,7 +40,8 @@ const Team = () => {
                     </ListView.Row>
                 ))}
             </ListView>
-            {isActive && <CreateTeamModal handleClose={handleClose} />}
+            {updateModal.isActive && <UpdateTeamModal handleClose={updateModal.handleClose} />}
+            {createModal.isActive && <CreateTeamModal handleClose={createModal.handleClose} />}
         </div>
     )
 }
