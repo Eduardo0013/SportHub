@@ -3,7 +3,7 @@ import Button from '../../../core/components/button/Button'
 import ButtonLink from '../../../core/components/button-link/ButtonLink'
 import { useState } from 'react'
 import { LOGIN } from '@Modules/shared/config/web-services'
-import Alert from '@Modules/core/components/alert/Alert'
+import AlertFactory from '@Modules/core/components/alert/AlertFactory'
 import { useNavigate } from 'react-router-dom'
 
 const LoginForm = () => {
@@ -60,11 +60,11 @@ const LoginForm = () => {
                 <p className='text-gray-600'>No tienes cuenta? </p>
                 <ButtonLink>Crea una</ButtonLink>
             </div>
-            {alert?.isVisible && <Alert type={alert?.type}>
+            {alert?.isVisible && <AlertFactory type={alert?.type}>
                 <p>
                     Credenciales incorrectas
                 </p>
-            </Alert>}
+            </AlertFactory>}
         </div>
     )
 }

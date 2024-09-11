@@ -5,7 +5,7 @@ import Form from '@Modules/core/components/form/Form'
 import Button from '@Modules/core/components/button/Button'
 import SecondaryButton from '@Modules/core/components/button/SecondaryButton'
 import Select from 'react-select'
-import Alert from '@Modules/core/components/alert/Alert'
+import AlertFactory from '@Modules/core/components/alert/AlertFactory'
 import useFetch from '@Modules/core/hooks/useFetch'
 
 const UpdateTeamModal = ({ handleClose }) => {
@@ -90,7 +90,7 @@ const UpdateTeamModal = ({ handleClose }) => {
                 <div className={stylesheet['CreateTeamModal-form_header']}>
                     Editar - Proximamente
                 </div>
-                {alert.isVisible && <Alert type={alert.type}>{alert?.message}</Alert>}
+                {alert.isVisible && <AlertFactory type={alert.type}>{alert?.message}</AlertFactory>}
                 <div className={stylesheet['CreateTeamModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='team-name'>Nombre</Form.Label>

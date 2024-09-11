@@ -4,7 +4,7 @@ import stylesheet from './create-sport-modal.module.css'
 import SecondaryButton from "../../../core/components/button/SecondaryButton"
 import { DEPORTES } from "@Modules/shared/config/web-services"
 import { useState } from "react"
-import Alert from "../../../core/components/alert/Alert"
+import AlertFactory from "../../../core/components/alert/AlertFactory"
 
 const CreateSportModal = ({ handleClose }) => {
     const [alert, setAlert] = useState({ isActive: false, type: 'error' })
@@ -63,9 +63,9 @@ const CreateSportModal = ({ handleClose }) => {
                 <div className={stylesheet['CreateSportModal-form_header']}>
                     Editar
                 </div>
-                {alert.isActive && <Alert type={alert.type}>
+                {alert.isActive && <AlertFactory type={alert.type}>
                     {alert?.message}
-                </Alert>}
+                </AlertFactory>}
                 <div className={stylesheet['CreateSportModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='sport-name'>Nombre</Form.Label>

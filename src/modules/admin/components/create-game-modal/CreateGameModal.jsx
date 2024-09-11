@@ -6,7 +6,7 @@ import stylesheet from './create-game-modal.module.css'
 import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
 import Select from "react-select"
 import useFetch from '@Modules/core/hooks/useFetch'
-import Alert from '@Modules/core/components/alert/Alert'
+import AlertFactory from '@Modules/core/components/alert/AlertFactory'
 
 const CreateGameModal = ({ handleClose }) => {
     const equiposResponse = useFetch(EQUIPOS)
@@ -96,9 +96,9 @@ const CreateGameModal = ({ handleClose }) => {
                 <div className={stylesheet['CreateGameModal-form_header']}>
                     Editar
                 </div>
-                {alert.isActive && <Alert type={alert.type}>
+                {alert.isActive && <AlertFactory type={alert.type}>
                     {alert?.message}
-                </Alert>}
+                </AlertFactory>}
                 <div className={stylesheet['CreateGameModal-form_body']}>
                     <Form.Group>
                         <Form.Label htmlFor='game-team-one'>Equipo 1</Form.Label>

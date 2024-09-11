@@ -7,7 +7,7 @@ import SecondaryButton from "@Modules/core/components/button/SecondaryButton"
 import Select from 'react-select'
 import Slider from '@Modules/core/components/form/Slider'
 import useFetch from '@Modules/core/hooks/useFetch'
-import Alert from '@Modules/core/components/alert/Alert'
+import AlertFactory from '@Modules/core/components/alert/AlertFactory'
 
 const CreateTournamentModal = ({ handleClose }) => {
     const deportesResponse = useFetch(DEPORTES)
@@ -105,7 +105,7 @@ const CreateTournamentModal = ({ handleClose }) => {
                 <div className={stylesheet['CreateTournamentModal-form_header']}>
                     Editar
                 </div>
-                {alert.isVisible && <Alert type={alert.type}>{alert.message}</Alert>}
+                {alert.isVisible && <AlertFactory type={alert.type}>{alert.message}</AlertFactory>}
                 <div className={stylesheet['CreateTournamentModal-form_body']}>
                     <div className={stylesheet['CreateTournamentModal-form_row']}>
                         <Form.Group>
